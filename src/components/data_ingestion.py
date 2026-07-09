@@ -7,6 +7,7 @@ from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 
 from src.components.data_tranformation import DataTranformation, DataTranformationConfig
+from src.components.model_trainer import ModelTrainerConfig , ModelTrainer
 
 
 @dataclass
@@ -43,5 +44,7 @@ if __name__=="__main__":
     
     data_tranformation=DataTranformation()
     train_data,test_data,_= data_tranformation.intiate_data_transform(train_data,test_data)
+    model_trainer=ModelTrainer()
+    print(model_trainer.initiate_model_trainer(train_data,test_data))
 
     
