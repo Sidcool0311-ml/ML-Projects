@@ -1,1 +1,351 @@
-<h1>welcome to the home page</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Exam Performance Indicator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c2340;
+    --ink-soft:#4a5178;
+    --paper:#f2eee1;
+    --paper-line:#e2dcc8;
+    --card:#fbfaf5;
+    --brass:#b9862c;
+    --brass-dark:#8f6720;
+    --brass-tint:#f3e6cb;
+    --red:#b5473a;
+    --green:#3f7d58;
+    --slate:#56678a;
+    --shadow: 0 1px 2px rgba(28,35,64,.06), 0 20px 40px -18px rgba(28,35,64,.30);
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    font-family:'Inter', Arial, sans-serif;
+    color:var(--ink);
+    background:
+      repeating-linear-gradient(var(--paper) 0px, var(--paper) 27px, var(--paper-line) 28px),
+      var(--paper);
+  }
+
+  .wrap{ width:920px; max-width:100%; margin:0 auto; padding:0 24px; }
+
+  /* ---------- Top bar ---------- */
+  header{ padding:28px 0 0; }
+  .topbar{
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px; font-weight:600; letter-spacing:.04em;
+  }
+  .brand .mark{
+    width:26px; height:26px; border-radius:50%;
+    background:var(--ink); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces', serif; font-size:14px; font-weight:600;
+  }
+  nav a{
+    font-size:13px; color:var(--ink-soft); text-decoration:none;
+    margin-left:26px;
+  }
+  nav a:hover{ color:var(--ink); }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:40px;
+    align-items:center;
+    padding:64px 0 76px;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--brass-dark);
+    background:var(--brass-tint);
+    padding:6px 12px; border-radius:20px;
+    margin-bottom:18px;
+  }
+  .eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--red); }
+  h1{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:46px;
+    line-height:1.08;
+    letter-spacing:-.01em;
+    margin-bottom:18px;
+  }
+  h1 em{ font-style:italic; color:var(--brass-dark); }
+  .hero p.lede{
+    font-size:16px;
+    color:var(--ink-soft);
+    line-height:1.65;
+    max-width:46ch;
+    margin-bottom:30px;
+  }
+  .cta-row{ display:flex; align-items:center; gap:18px; }
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:14px 24px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+    color:#fff; background:var(--ink);
+    border-radius:5px; text-decoration:none;
+    transition:background .15s ease, transform .1s ease;
+  }
+  .btn:hover{ background:#2c3560; }
+  .btn:active{ transform:translateY(1px); }
+  .btn svg{ transition:transform .2s ease; }
+  .btn:hover svg{ transform:translateX(3px); }
+  .cta-note{ font-size:12.5px; color:var(--ink-soft); }
+
+  .hero-art{
+    position:relative;
+    background:var(--card);
+    border:1px solid #e7e1cf;
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    padding:26px;
+  }
+
+  /* ---------- Stat strip ---------- */
+  .stats{
+    display:grid; grid-template-columns:repeat(3,1fr);
+    border-top:1px solid var(--paper-line);
+    border-bottom:1px solid var(--paper-line);
+    padding:26px 0;
+  }
+  .stat{ text-align:center; border-left:1px solid var(--paper-line); }
+  .stat:first-child{ border-left:none; }
+  .stat .num{
+    font-family:'Fraunces', serif; font-weight:600; font-size:28px; color:var(--ink);
+  }
+  .stat .label{
+    font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--ink-soft); margin-top:4px;
+  }
+
+  /* ---------- How it works ---------- */
+  section.how{ padding:72px 0; }
+  .section-head{ margin-bottom:40px; max-width:52ch; }
+  .section-head .eyebrow{ margin-bottom:14px; }
+  .section-head h2{
+    font-family:'Fraunces', serif; font-weight:600; font-size:28px; letter-spacing:-.01em;
+    margin-bottom:10px;
+  }
+  .section-head p{ color:var(--ink-soft); font-size:14.5px; line-height:1.6; }
+
+  .steps{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  .step{
+    background:var(--card);
+    border:1px solid #e7e1cf;
+    border-radius:8px;
+    padding:26px 22px;
+    box-shadow:var(--shadow);
+    position:relative;
+  }
+  .step .qmark{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px; font-weight:600; color:var(--brass);
+    background:#fff; border:1px solid #e7e1cf;
+    width:24px; height:24px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:18px;
+  }
+  .step .icon{ margin-bottom:16px; color:var(--slate); }
+  .step h3{ font-size:15.5px; font-weight:700; margin-bottom:8px; }
+  .step p{ font-size:13.5px; color:var(--ink-soft); line-height:1.6; }
+
+  /* ---------- Sample report ---------- */
+  section.sample{ padding:0 0 76px; }
+  .sample-card{
+    display:grid; grid-template-columns:.85fr 1.15fr;
+    gap:0;
+    background:var(--card);
+    border:1px solid #e7e1cf;
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .sample-art{
+    background:linear-gradient(160deg, #232a4d 0%, #1c2340 100%);
+    display:flex; align-items:center; justify-content:center;
+    padding:34px;
+  }
+  .sample-copy{ padding:40px; }
+  .sample-copy .eyebrow{ margin-bottom:14px; }
+  .sample-copy h2{
+    font-family:'Fraunces', serif; font-weight:600; font-size:24px; margin-bottom:12px;
+  }
+  .sample-copy p{ color:var(--ink-soft); font-size:14px; line-height:1.65; margin-bottom:20px; }
+  .factor-list{ list-style:none; }
+  .factor-list li{
+    display:flex; align-items:center; gap:10px;
+    font-size:13.5px; color:var(--ink);
+    padding:8px 0; border-top:1px dashed var(--paper-line);
+  }
+  .factor-list li:first-child{ border-top:none; }
+  .factor-list svg{ color:var(--green); flex:0 0 auto; }
+
+  /* ---------- Footer ---------- */
+  footer{
+    padding:30px 0 50px;
+    display:flex; align-items:center; justify-content:space-between;
+    border-top:1px solid var(--paper-line);
+    font-size:12.5px; color:var(--ink-soft);
+  }
+  footer .brand{ font-size:12px; }
+
+  @media (max-width:760px){
+    .hero{ grid-template-columns:1fr; padding:44px 0 56px; }
+    h1{ font-size:32px; }
+    .steps{ grid-template-columns:1fr; }
+    .sample-card{ grid-template-columns:1fr; }
+    .stats{ grid-template-columns:1fr; }
+    .stat{ border-left:none; border-top:1px solid var(--paper-line); padding:14px 0; }
+    .stat:first-child{ border-top:none; }
+    nav{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="topbar">
+      <div class="brand"><span class="mark">S</span> Exam Performance Indicator</div>
+      <nav>
+        <a href="#how">How it works</a>
+        <a href="#sample">What we look at</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div>
+      <div class="eyebrow"><span class="dot"></span> Built on 1,000 student exam records</div>
+      <h1>Predict a student's<br><em>maths score</em> before<br>they sit the exam.</h1>
+      <p class="lede">Answer seven quick questions about a student's background and their reading &amp; writing marks. Our model estimates the maths score they're likely to achieve — so educators can spot who needs support early.</p>
+      <div class="cta-row">
+        <a class="btn" href="{{ url_for('predict_datapoint') }}">
+          Try the predictor
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <span class="cta-note">Takes under a minute</span>
+      </div>
+    </div>
+
+    <div class="hero-art">
+      <svg viewBox="0 0 320 260" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <!-- notebook card -->
+        <rect x="14" y="14" width="292" height="232" rx="8" fill="#ffffff" stroke="#e7e1cf" stroke-width="1.5"/>
+        <line x1="14" y1="52" x2="306" y2="52" stroke="#e2dcc8" stroke-width="1.5"/>
+        <circle cx="34" cy="33" r="5" fill="#b5473a"/>
+        <circle cx="52" cy="33" r="5" fill="#b9862c"/>
+        <circle cx="70" cy="33" r="5" fill="#3f7d58"/>
+
+        <!-- bar chart -->
+        <g>
+          <rect x="42" y="150" width="26" height="60" rx="2" fill="#e2dcc8"/>
+          <rect x="82" y="120" width="26" height="90" rx="2" fill="#e2dcc8"/>
+          <rect x="122" y="95" width="26" height="115" rx="2" fill="#56678a"/>
+          <rect x="162" y="130" width="26" height="80" rx="2" fill="#e2dcc8"/>
+          <rect x="202" y="75" width="26" height="135" rx="2" fill="#b9862c"/>
+          <rect x="242" y="105" width="26" height="105" rx="2" fill="#e2dcc8"/>
+        </g>
+        <line x1="34" y1="210" x2="282" y2="210" stroke="#1c2340" stroke-width="1.5"/>
+
+        <!-- trend line + dot -->
+        <path d="M42 195 L108 160 L148 118 L188 150 L228 90 L268 128" fill="none" stroke="#b5473a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="228" cy="90" r="5" fill="#b5473a"/>
+        <circle cx="228" cy="90" r="9" fill="none" stroke="#b5473a" stroke-width="1.5" opacity=".4"/>
+
+        <!-- floating score badge -->
+        <g>
+          <rect x="196" y="56" width="70" height="30" rx="15" fill="#1c2340"/>
+          <text x="231" y="76" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="600" fill="#fff">92 / 100</text>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="stat"><div class="num">1,000</div><div class="label">Records analysed</div></div>
+    <div class="stat"><div class="num">7</div><div class="label">Input factors</div></div>
+    <div class="stat"><div class="num">&lt; 1 min</div><div class="label">To get a result</div></div>
+  </section>
+
+  <section class="how" id="how">
+    <div class="section-head">
+      <div class="eyebrow"><span class="dot"></span> Process</div>
+      <h2>Three steps, one prediction</h2>
+      <p>The form on the next page walks through a short set of questions — here's what happens with your answers.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <span class="qmark">1</span>
+        <svg class="icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        <h3>Answer 7 questions</h3>
+        <p>Gender, ethnicity group, parental education, lunch type, test prep status, plus reading and writing scores.</p>
+      </div>
+      <div class="step">
+        <span class="qmark">2</span>
+        <svg class="icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1 1.55V21a2 2 0 0 1-4 0v-.09A1.7 1.7 0 0 0 9 19.4a1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.55-1H3a2 2 0 0 1 0-4h.09A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.55V3a2 2 0 0 1 4 0v.09a1.7 1.7 0 0 0 1 1.55 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.4 9a1.7 1.7 0 0 0 1.55 1H21a2 2 0 0 1 0 4h-.09a1.7 1.7 0 0 0-1.55 1Z"/></svg>
+        <h3>Model runs the numbers</h3>
+        <p>A regression model trained on past exam records weighs each factor to estimate the maths score.</p>
+      </div>
+      <div class="step">
+        <span class="qmark">3</span>
+        <svg class="icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="M7 15l4-6 4 4 5-9"/></svg>
+        <h3>See the predicted score</h3>
+        <p>Get an estimated maths score out of 100, ready to inform tutoring or intervention decisions.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sample" id="sample">
+    <div class="sample-card">
+      <div class="sample-art">
+        <svg width="180" height="180" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="90" cy="90" r="78" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1.5"/>
+          <circle cx="90" cy="90" r="60" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="1.5"/>
+          <path d="M40 120 L65 90 L85 100 L120 55" stroke="#c9a24a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="120" cy="55" r="5" fill="#e2b768"/>
+          <circle cx="65" cy="90" r="4" fill="#f4efe4"/>
+          <circle cx="85" cy="100" r="4" fill="#f4efe4"/>
+          <text x="90" y="150" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#cdd3e6" letter-spacing="1">MATHS SCORE</text>
+        </svg>
+      </div>
+      <div class="sample-copy">
+        <div class="eyebrow"><span class="dot"></span> Under the hood</div>
+        <h2>What the model actually weighs</h2>
+        <p>These are the seven factors captured on the predictor form, each contributing to the final estimate.</p>
+        <ul class="factor-list">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Gender</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Race / ethnicity group</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Parental level of education</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Lunch type</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Test preparation course</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Reading score</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Writing score</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="brand">Exam Performance Indicator</div>
+    <div>Built for educators &amp; students</div>
+  </footer>
+</div>
+
+</body>
+</html>
